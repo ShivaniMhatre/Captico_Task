@@ -102,7 +102,36 @@ export const Logout = (req, res) => {
     });
 };
 
+// Delete User
+export const DeleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        // Find the user by ID and delete from the database
+        const user = await User.findByIdAndDelete(id);
+
+        // If the user is not found, respond with a 404 (Not Found) status
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        // Respond with success message and status 200 (OK)
+        res.status(200).json({
+            success: true,
+            message: "User deleted successfully",
+        });
+    } catch (error) {
+        // Handle any errors that occur during the deletion process
+        res.status(500).json({
+            message: "Error deleting user",
+            error: error.message,
+            success: false
+        });
+    }
+};
 
 // Get All Users
 export const GetAllUser = async (req, res) => {
