@@ -75,4 +75,3 @@ build/
 *.pem
 *.cer
 *.der
-.env
