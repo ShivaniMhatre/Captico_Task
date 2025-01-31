@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchCourseByIdQuery, useUpdateCourseMutation } from '../../redux/features/course/courseApi';
 import { toast } from 'react-toastify';
+import SingleCourse from './SingleCourse';
 
 export default function UpdateCourse() {
     // Get the course ID from the URL parameters
@@ -62,7 +63,7 @@ export default function UpdateCourse() {
             await updateCourse({ id: id, ...updatedCourse }).unwrap();
             toast.success('Course updated successfully');
             await refetch(); // Refetch course data after updating
-            navigate("/viewCourses"); // Navigate to view courses page
+            navigate(`/viewCourse/${id}`); // Navigate to view courses page
         } catch (error) {
             console.error('Failed to update course:', error);
         }
