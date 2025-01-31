@@ -56,6 +56,7 @@ export default function CourseTable({ courses }) {
                     </tr>
                 </thead>
 
+                {/* map the course */}
                 <tbody>
                     {
                         courses && courses.map((course, index) => (
@@ -80,6 +81,7 @@ export default function CourseTable({ courses }) {
                                         onClick={() => navigate(`/viewCourse/${course?._id}`)}
                                         className='bg-blue-600 text-white px-2 py-1'><i className="ri-eye-line"></i></button>
                                 </td>
+                                {/* if logged user id and user id in course is equal then only display edit and delete (course is added by user only this user is allow to delete) */}
                                 {
                                     user?._id === course?.userId &&
                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 cursor-pointer hover:text-primary flex items-center gap-5">
